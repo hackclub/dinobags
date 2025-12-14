@@ -7,11 +7,17 @@ module HCB
     def initialize(mail) = @mail = mail
 
     def call
+      Rails.logger.info("Processing new invitation")
+
       invites = HCBService.list_invitations
       invites.each do |invite|
         if invite.dig(:role) == "manager"
+          Rails.logger.info("Accepting manager invite to #{invite.dig(:organization, :name)} from #{invite.dig(:sender, :name)}")
+
           HCBService.accept_invitation(invite.dig(:id))
         else
+          Rails.logger.info("Rejecting #{invite.dig(:role)} invite to #{invite.dig(:organization, :name)} from #{invite.dig(:sender, :name)}")
+
           HCBService.reject_invitation(invite.dig(:id))
         end
       end
