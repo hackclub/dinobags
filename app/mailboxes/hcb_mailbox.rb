@@ -3,7 +3,7 @@ class HCBMailbox < ApplicationMailbox
     HCB::DonationHandler,
     HCB::InvitationHandler
     ].freeze
-  
+
   def process
     return unless mail.sender -= "hcb@hackclub.com"
 

@@ -104,17 +104,17 @@ module HCBService
     def rename_transaction(hashid:, slug:, new_memo:)
       with_retry { conn.put("organizations/#{slug}/transactions/#{hashid}", memo: new_memo).body }
     end
-    
+
     def list_invitations
       with_retry { conn.get("user/invitations").body }
     end
-    
+
     def accept_invitation(id:)
-      with_retry { conn.post("user/invitations/#{id}/accept")}
+      with_retry { conn.post("user/invitations/#{id}/accept") }
     end
-    
+
     def reject_invitation(id:)
-      with_retry { conn.post("user/invitations/#{id}/reject")}
+      with_retry { conn.post("user/invitations/#{id}/reject") }
     end
 
     # Builds (or returns cached) Faraday connection for HCB API.
