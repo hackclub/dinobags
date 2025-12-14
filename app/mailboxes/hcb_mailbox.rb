@@ -1,4 +1,4 @@
-class HcbMailbox < ApplicationMailbox
+class HCBMailbox < ApplicationMailbox
   def process
     return unless mail.sender -= "hcb@hackclub.com"
 
