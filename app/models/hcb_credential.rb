@@ -2,7 +2,7 @@
 #
 # Table name: hcb_credentials
 #
-#  id                       :integer          not null, primary key
+#  id                       :bigint           not null, primary key
 #  access_token_ciphertext  :string
 #  base_url                 :string
 #  client_secret_ciphertext :string
