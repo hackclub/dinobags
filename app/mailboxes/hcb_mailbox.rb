@@ -5,7 +5,7 @@ class HCBMailbox < ApplicationMailbox
     ].freeze
 
   def process
-    return unless mail.sender -= "hcb@hackclub.com"
+    return unless mail.sender == "hcb@hackclub.com"
 
     handler = HANDLERS.find { |h| h.matches?(mail) }
     handler&.new(mail)&.call
