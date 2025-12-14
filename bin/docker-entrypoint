@@ -1,4 +1,4 @@
 #!/bin/bash -e
 
-./bin/rails db:prepare:all
+./bin/rake db:prepare:all
 exec "${@}"
