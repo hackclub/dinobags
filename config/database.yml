@@ -27,14 +27,17 @@ production:
     <<: *default
     url: <%= Rails.application.credentials.dig(:database, :url) %>
     migrations_paths: db/cache_migrate
+    schema_dump: cache_schema.rb
     database: dinobags_cache
   queue:
     <<: *default
     url: <%= Rails.application.credentials.dig(:database, :url) %>
     migrations_paths: db/queue_migrate
+    schema_dump: queue_schema.rb
     database: dinobags_queue
   cable:
     <<: *default
     url: <%= Rails.application.credentials.dig(:database, :url) %>
     migrations_paths: db/cable_migrate
+    schema_dump: cable_schema.rb
     database: dinobags_cable
