@@ -26,16 +26,20 @@ test:
 production:
   primary:
     <<: *default
-    database: storage/production.sqlite3
+    url: <%= Rails.application.credentials.dig(:database, :url) %>
+    database: dinobags_production
   cache:
     <<: *default
-    database: storage/production_cache.sqlite3
+    url: <%= Rails.application.credentials.dig(:database, :url) %>
     migrations_paths: db/cache_migrate
+    database: dinobags_cache
   queue:
     <<: *default
-    database: storage/production_queue.sqlite3
+    url: <%= Rails.application.credentials.dig(:database, :url) %>
     migrations_paths: db/queue_migrate
+    database: dinobags_queue
   cable:
     <<: *default
-    database: storage/production_cable.sqlite3
+    url: <%= Rails.application.credentials.dig(:database, :url) %>
     migrations_paths: db/cable_migrate
+    database: dinobags_cable
