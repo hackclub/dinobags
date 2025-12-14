@@ -6,7 +6,7 @@ export default class extends Controller {
   static values = { 
     lines: { type: Number, default: 100 },
     interval: { type: Number, default: 2000 },
-    completionsUrl: { type: String, default: "/admin/console/completions" }
+    completionsUrl: { type: String, default: "/admin/tools/console/completions" }
   }
 
   connect() {
