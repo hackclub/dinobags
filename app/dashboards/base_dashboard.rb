@@ -48,15 +48,15 @@ class BaseDashboard < Administrate::BaseDashboard
     def association_types
       model.reflect_on_all_associations.each_with_object({}) do |assoc, hash|
         hash[assoc.name] = case assoc.macro
-                           when :belongs_to
+        when :belongs_to
                              Administrate::Field::BelongsTo
-                           when :has_many
+        when :has_many
                              Administrate::Field::HasMany
-                           when :has_one
+        when :has_one
                              Administrate::Field::HasOne
-                           else
+        else
                              Administrate::Field::String
-                           end
+        end
       end
     end
   end
