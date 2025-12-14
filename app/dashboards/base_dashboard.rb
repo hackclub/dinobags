@@ -1,4 +1,6 @@
-class BaseDashboard < Administrate::BaseDashboard
+require "administrate/base_dashboard"
+
+class BaseDashboard < ::Administrate::BaseDashboard
   class << self
     def model
       name.gsub("Dashboard", "").constantize
