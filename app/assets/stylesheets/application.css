@@ -8,3 +8,7 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+* {
+  font-family: "Comic Sans MS", "Comic Sans", cursive !important;
+}

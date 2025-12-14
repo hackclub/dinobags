@@ -17,9 +17,16 @@ Rails.application.routes.draw do
 
   # Admin
   namespace :admin do
-    get "console", to: "console#show", as: :console
-    post "console/execute", to: "console#execute", as: :console_execute
-    get "console/execute", to: redirect("/admin/console")
-    get "console/completions", to: "console#completions", as: :console_completions
+    resources :users
+    resources :hcb_credentials
+
+    root to: "users#index"
+
+    namespace :tools do
+      get "console", to: "console#show", as: :console
+      post "console/execute", to: "console#execute", as: :console_execute
+      get "console/execute", to: redirect("/admin/tools/console")
+      get "console/completions", to: "console#completions", as: :console_completions
+    end
   end
 end

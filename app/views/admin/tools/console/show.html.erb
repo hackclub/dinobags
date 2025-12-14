@@ -6,7 +6,7 @@
   <div class="console-header">
     <h1>Console</h1>
     <div class="logs-controls">
-      <%= form_with url: admin_console_path, method: :get, local: true, class: "logs-form" do |f| %>
+      <%= form_with url: admin_tools_console_path, method: :get, local: true, class: "logs-form" do |f| %>
         <label>Lines: <%= f.number_field :lines, value: @lines, min: 1, max: 1000, class: "lines-input" %></label>
         <%= f.submit "Refresh", class: "btn btn-secondary" %>
       <% end %>
@@ -31,7 +31,7 @@
 </script>
 <% end %>
 
-    <%= form_with url: admin_console_execute_path, method: :post, data: { turbo: false }, class: "console-form" do |f| %>
+    <%= form_with url: admin_tools_console_execute_path, method: :post, data: { turbo: false }, class: "console-form" do |f| %>
       <%= f.hidden_field :lines, value: @lines %>
       <div class="console-input-row">
         <div class="console-input-wrapper">

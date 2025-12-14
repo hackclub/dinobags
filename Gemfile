@@ -88,3 +88,5 @@ gem "omniauth-rails_csrf_protection", "~> 2.0"
 gem "omniauth_openid_connect", "~> 0.8.0"
 
 gem "pundit", "~> 2.5"
+
+gem "administrate", "~> 1.0"

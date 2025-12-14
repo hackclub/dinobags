@@ -1,5 +1,6 @@
 module Admin
-  class ConsoleController < ApplicationController
+  module Tools
+    class ConsoleController < ::ApplicationController
     layout "dashboard"
     before_action :require_admin!
 
@@ -111,6 +112,7 @@ module Admin
       end
     rescue => e
       "Error reading logs: #{e.message}"
+    end
     end
   end
 end
