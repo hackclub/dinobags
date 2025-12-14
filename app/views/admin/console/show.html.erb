@@ -1,0 +1,50 @@
+<% content_for :title, "Admin Console" %>
+
+<div class="dashboard-content console-page"
+     data-controller="console"
+     data-console-lines-value="<%= @lines %>">
+  <div class="console-header">
+    <h1>Console</h1>
+    <div class="logs-controls">
+      <%= form_with url: admin_console_path, method: :get, local: true, class: "logs-form" do |f| %>
+        <label>Lines: <%= f.number_field :lines, value: @lines, min: 1, max: 1000, class: "lines-input" %></label>
+        <%= f.submit "Refresh", class: "btn btn-secondary" %>
+      <% end %>
+      <label class="auto-refresh-toggle">
+        <input type="checkbox" data-console-target="toggle" data-action="change->console#toggleLive">
+        <span>Live</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="admin-tool console-container">
+    <pre class="logs-output" data-console-target="logs" id="logs-output"><%= @log_output %><% if @output.present? %>
+
+<span class="console-result">&gt;&gt; <%= @output %></span><% end %></pre>
+
+<% if @output.present? %>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const logs = document.getElementById("logs-output");
+    if (logs) logs.scrollTop = logs.scrollHeight;
+  });
+</script>
+<% end %>
+
+    <%= form_with url: admin_console_execute_path, method: :post, data: { turbo: false }, class: "console-form" do |f| %>
+      <%= f.hidden_field :lines, value: @lines %>
+      <div class="console-input-row">
+        <div class="console-input-wrapper">
+          <%= f.text_field :code,
+              class: "console-input",
+              placeholder: "Enter Ruby code...",
+              autocomplete: "off",
+              autofocus: true,
+              data: { console_target: "input", action: "input->console#onInput keydown->console#onKeydown" } %>
+          <div class="suggestions" data-console-target="suggestions"></div>
+        </div>
+        <%= f.submit "Run", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

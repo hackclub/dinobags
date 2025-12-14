@@ -14,4 +14,12 @@ Rails.application.routes.draw do
   # Dashboard
   get "dashboard", to: "dashboard#index", as: :dashboard
   delete "logout", to: "sessions#destroy", as: :logout
+
+  # Admin
+  namespace :admin do
+    get "console", to: "console#show", as: :console
+    post "console/execute", to: "console#execute", as: :console_execute
+    get "console/execute", to: redirect("/admin/console")
+    get "console/completions", to: "console#completions", as: :console_completions
+  end
 end
