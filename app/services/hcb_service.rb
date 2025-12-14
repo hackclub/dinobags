@@ -96,7 +96,7 @@ module HCBService
       purpose = txn.dig(:purpose)
       txn_id = txn.dig(:disbursements, 0, :transaction_id)
       name = txn.dig(:user, :name)
-      
+
       memo = "[grant] topping up #{name}'s #{purpose}"
       rename_transaction(hashid: txn_id, slug:, new_memo: memo)
     end
