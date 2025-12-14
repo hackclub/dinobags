@@ -45,8 +45,7 @@ Rails.application.configure do
   file_logger.formatter = config.log_formatter
   stdout_logger.formatter = config.log_formatter
 
-  config.logger = file_logger
-  config.logger.extend(ActiveSupport::Logger.broadcast(stdout_logger))
+  config.logger = ActiveSupport::BroadcastLogger.new(stdout_logger, file_logger)
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!).
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
