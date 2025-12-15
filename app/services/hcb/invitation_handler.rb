@@ -14,11 +14,11 @@ module HCB
         if invite.dig(:role) == "manager"
           Rails.logger.info("Accepting manager invite to #{invite.dig(:organization, :name)} from #{invite.dig(:sender, :name)}")
 
-          HCBService.accept_invitation(invite.dig(:id))
+          HCBService.accept_invitation(id: invite.dig(:id))
         else
           Rails.logger.info("Rejecting #{invite.dig(:role)} invite to #{invite.dig(:organization, :name)} from #{invite.dig(:sender, :name)}")
 
-          HCBService.reject_invitation(invite.dig(:id))
+          HCBService.reject_invitation(id: invite.dig(:id))
         end
       end
     end
