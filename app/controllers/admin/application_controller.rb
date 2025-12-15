@@ -7,9 +7,14 @@
 module Admin
   class ApplicationController < ::Administrate::ApplicationController
     before_action :authenticate_admin
+    before_action :authenticate_admin, unless: :mission_control_jobs?
 
     def authenticate_admin
       redirect_to root_path, alert: "Not authorized" unless current_user&.admin?
+    end
+
+    def mission_control_jobs?
+      request.path.start_with?("/admin/jobs")
     end
 
     def current_user

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
-  after_action :verify_authorized
+  after_action :verify_authorized, unless: :skip_pundit?
 
   helper_method :current_user, :user_signed_in?
 
@@ -28,5 +28,11 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound do |e|
     flash[:error] = "oops! looks like we dropped that record in the trash..."
     redirect_to root_path
+  end
+
+  private
+
+  def skip_pundit?
+    self.class.module_parent_name&.start_with?("MissionControl")
   end
 end

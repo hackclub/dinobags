@@ -90,3 +90,5 @@ gem "omniauth_openid_connect", "~> 0.8.0"
 gem "pundit", "~> 2.5"
 
 gem "administrate", "~> 1.0"
+
+gem "mission_control-jobs", "~> 1.1"

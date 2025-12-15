@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       post "console/execute", to: "console#execute", as: :console_execute
       get "console/execute", to: redirect("/admin/tools/console")
       get "console/completions", to: "console#completions", as: :console_completions
+      mount MissionControl::Jobs::Engine, at: "jobs", constraints: ->(request) {
+        AdminConstraint.allow?(request, :access_jobs?)
+      }
     end
   end
 end
