@@ -92,3 +92,5 @@ gem "pundit", "~> 2.5"
 gem "administrate", "~> 1.0"
 
 gem "mission_control-jobs", "~> 1.1"
+
+gem "faraday-mashify", "~> 1.0"
