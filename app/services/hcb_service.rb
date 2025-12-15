@@ -99,6 +99,8 @@ module HCBService
 
       memo = "[grant] topping up #{name}'s #{purpose}"
       rename_transaction(hashid: txn_id, slug:, new_memo: memo)
+
+      txn_id
     end
 
     def rename_transaction(hashid:, slug:, new_memo:)

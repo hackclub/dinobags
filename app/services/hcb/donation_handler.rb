@@ -11,18 +11,20 @@ module HCB
       grant_id = body.split("grants/").last.to_s.split(/[^a-zA-Z0-9]/).first
       hash_id = "cdg_#{grant_id}"
 
-      donation_id = "don_#{body.split("donations/").last.to_s.split(/[\/\s]/).first.remove('"')}"
+      don_id = "don_#{body.split("donations/").last.to_s.split(/[\/\s]/).first.remove('"')}"
 
-      return unless hash_id and grant_id
+      return if grant_id.blank?
+
+      return if Topup.find_by(don_id:)
 
       begin
-        donation_data = Faraday.get("#{HCBService.base_url}/api/v3/donations/#{donation_id}?expand=organization")
+        donation_data = Faraday.get("#{HCBService.base_url}/api/v3/donations/#{don_id}?expand=organization")
       rescue StandardError => e
-        Rails.logger.error("Error fetching donation details for don_#{donation_id}. #{e.message}")
+        Rails.logger.error("Error fetching donation details for don_#{don_id}. #{e.message}")
         return
       end
 
-      return Rails.logger.error("Failed to fetch donation details for #{donation_id}") unless donation_data.success?
+      return Rails.logger.error("Failed to fetch donation details for #{don_id}") unless donation_data.success?
 
       donation_json = JSON.parse(donation_data.body)
       amount_cents = donation_json.dig("amount_cents")
@@ -32,10 +34,23 @@ module HCB
 
       Rails.logger.info("Processing #{amount_cents}¢ donation for #{slug} on #{hash_id}")
 
-      HCBService.topup_card_grant(
-        hashid: hash_id,
+      begin
+        txn_id = HCBService.topup_card_grant(
+          hashid: hash_id,
+          amount_cents:,
+          slug:
+        )
+      rescue => e
+        Rails.logger.error "Error topping up grant #{hash_id} with #{amount_cents} on #{slug}: #{e.message}"
+        return
+      end
+
+      Topup.create(
+        txn_id:,
         amount_cents:,
-        slug:
+        don_id:,
+        slug:,
+        cdg_id: hash_id
       )
     end
   end
