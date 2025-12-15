@@ -94,3 +94,6 @@ gem "administrate", "~> 1.0"
 gem "mission_control-jobs", "~> 1.1"
 
 gem "faraday-mashify", "~> 1.0"
+
+gem "sentry-ruby"
+gem "sentry-rails"
