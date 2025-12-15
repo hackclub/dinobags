@@ -25,8 +25,8 @@ module HCB
       return Rails.logger.error("Failed to fetch donation details for #{donation_id}") unless donation_data.success?
 
       donation_json = JSON.parse(donation_data.body)
-      amount_cents = donation_json.dig(:amount_cents)
-      slug = donation_json.dig(:organization, :slug)
+      amount_cents = donation_json.dig("amount_cents")
+      slug = donation_json.dig("organization", "slug")
 
       return Rails.logger.error("Donation amount not found") unless amount_cents
 
