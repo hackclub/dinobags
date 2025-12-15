@@ -12,3 +12,13 @@
 * {
   font-family: "Comic Sans MS", "Comic Sans", cursive !important;
 }
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 500px;
+}

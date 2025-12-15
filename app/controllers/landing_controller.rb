@@ -4,5 +4,8 @@ class LandingController < ApplicationController
 
   def index
     redirect_to dashboard_path if user_signed_in?
+
+    @total_transferred = Topup.sum(:amount_cents)
+    @total_txns = Topup.count
   end
 end
