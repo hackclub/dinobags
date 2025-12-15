@@ -16,7 +16,7 @@ module HCB
       return unless hash_id and grant_id
 
       begin
-        donation_data = Faraday.get("#{HCBService.base_url}/api/v3/donations/#{donation_id}")
+        donation_data = Faraday.get("#{HCBService.base_url}/api/v3/donations/#{donation_id}?expand=organization")
       rescue StandardError => e
         Rails.logger.error("Error fetching donation details for don_#{donation_id}. #{e.message}")
         return
