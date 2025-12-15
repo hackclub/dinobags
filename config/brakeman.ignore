@@ -1,0 +1,22 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "713433db8542a2e96cb092ab99f470dd18bfe468c1960d8de4d5f65b96f8a594",
+      "note": "lines is clamped to integer, Rails.env is not user-controlled"
+    },
+    {
+      "fingerprint": "75d0158fe676d821bfb6f6827c8aac784a8dfd64b10ed4c667a61a2c519d5ba3",
+      "note": "lines is clamped to integer, Rails.env is not user-controlled"
+    },
+    {
+      "fingerprint": "85c8532ad327aa3350d959f484c7b69d0616c2da0f84a8d333ffd6deb60ab333",
+      "note": "Intentional admin-only console feature with proper authorization"
+    },
+    {
+      "fingerprint": "90d9a79e13bc7fa2da95d7ece8f68c6fb315ae1a5765a6a4a7e6844cae0f135f",
+      "note": "Intentional admin-only console feature with proper authorization"
+    }
+  ],
+  "updated": "2025-12-15",
+  "brakeman_version": "7.0.0"
+}
