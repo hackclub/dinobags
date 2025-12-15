@@ -102,6 +102,7 @@ module HCBService
     end
 
     def rename_transaction(hashid:, slug:, new_memo:)
+      Rails.logger.info "Rename on #{slug} for #{hashid} to #{new_memo}"
       with_retry { conn.put("organizations/#{slug}/transactions/#{hashid}", memo: new_memo).body }
     end
 
