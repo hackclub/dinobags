@@ -1,7 +1,7 @@
 module HCB
   class DonationHandler
     def self.matches?(mail)
-      mail.subject.match?(/received a donation|received your first donation/)
+      mail.subject.match?(/received a donation|receiving your first donation/)
     end
 
     def initialize(mail) = @mail = mail
